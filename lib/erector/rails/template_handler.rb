@@ -2,7 +2,7 @@ module Erector
   module Rails
     class TemplateHandler
 
-      if defined?(ActionView) && defined?(Rails) && Rails.respond_to?(:version) && Rails.version.to_s =~ /^[345]/
+      if defined?(ActionView) && defined?(Rails) && Rails.respond_to?(:version) && Rails.version.to_s.match?(/^[345]/)
         def call(template)
           require_dependency template.identifier
           widget_class_name = "views/#{template.identifier =~ %r(views/([^.]*)(\..*)?\.rb) && $1}".camelize
@@ -13,7 +13,7 @@ module Erector
         end
       end
 
-      if defined?(ActionView) && defined?(Rails) && Rails.respond_to?(:version) && Rails.version.to_s =~ /^[67]/
+      if defined?(ActionView) && defined?(Rails) && Rails.respond_to?(:version) && Rails.version.to_s.match?(/^[67]/)
         def call(template, source)
           require_dependency template.identifier
           widget_class_name = "views/#{template.identifier =~ %r(views/([^.]*)(\..*)?\.rb) && $1}".camelize
