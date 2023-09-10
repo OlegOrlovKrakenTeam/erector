@@ -142,8 +142,8 @@ module Erector
 
     # Since we delegate method_missing to helpers, we need to delegate
     # respond_to? as well.
-    def respond_to?(name)
-      super || helpers.respond_to?(name)
+    def respond_to?(name, include_all=false)
+      super || helpers.respond_to?(name, include_all)
     end
 
     [
